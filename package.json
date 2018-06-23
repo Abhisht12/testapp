@@ -3,13 +3,28 @@
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
+  "main": "./electron/main.js",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
+    "ionic:serve": "ionic-app-scripts serve",
+    "start": "electron .",
+    "win": "electron-builder -w",
+    "make-cert": "electron-builder create-self-signed-cert -p dentalxchange"
+  },
+  "build":{
+    "appId": "com.dentalxchange.www",
+    "directories": {
+      "buildResources": "electron/resources"
+    },
+    "win": {
+      "certificateFile" : "private/dentalxchange.pfx",
+      "verifyUpdateCodeSignature": "false",
+      "publisherName": "dentalxchange"
+    }
   },
   "dependencies": {
     "@angular/animations": "5.2.11",
@@ -33,6 +48,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.10",
+    "electron-builder": "^20.15.1",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project"
